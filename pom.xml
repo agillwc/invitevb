@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project 
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <name>Invite VB</name>
+    <version>0.1.0-SNAPSHOT</version>
+    <description>
+        Aplicação para plataforma VBulletin.
+        Faz o envio de mensagens em massa para todos os usuários online.
+    </description>
+    
+    <groupId>com.github.rnbr</groupId>
+    <artifactId>invitevb</artifactId>
+    <packaging>jar</packaging>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+    <modelVersion>4.0.0</modelVersion>
+</project>
