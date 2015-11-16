@@ -2,8 +2,8 @@ package com.github.rnbr.invitevb;
 
 public class User {
 
-    private String name;
-    private String profile;
+    private final String name;
+    private final String profile;
 
     public User(String name, String profile) {
         this.name = name;
