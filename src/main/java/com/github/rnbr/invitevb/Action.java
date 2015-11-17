@@ -1,18 +1,7 @@
 package com.github.rnbr.invitevb;
 
-import com.gargoylesoftware.htmlunit.BrowserVersion;
-import com.gargoylesoftware.htmlunit.CookieManager;
-import com.gargoylesoftware.htmlunit.ElementNotFoundException;
-import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.DomElement;
-import com.gargoylesoftware.htmlunit.html.HtmlCheckBoxInput;
-import com.gargoylesoftware.htmlunit.html.HtmlForm;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.html.HtmlPasswordInput;
-import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
-import com.gargoylesoftware.htmlunit.html.HtmlTextArea;
-import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
+import com.gargoylesoftware.htmlunit.*;
+import com.gargoylesoftware.htmlunit.html.*;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -86,7 +75,7 @@ public class Action {
                     HtmlTextArea messageInput = messageForm.getTextAreaByName(properties.getProperty("message.textarea"));
                     if(messageInput != null){
                         
-                        String hello = properties.getProperty("message.greetings") + (args.length > 0 ? args[0] : "") + "! ";
+                        String hello = properties.getProperty("message.greetings") + " " + (args.length > 0 ? args[0] : "") + "! ";
                         messageInput.setText(hello + properties.getProperty("message.content"));
                         HtmlSubmitInput sendButton = messageForm.getInputByName(properties.getProperty("message.sendbutton"));
                         HtmlPage afterSend = sendButton.click();
