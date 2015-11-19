@@ -10,7 +10,7 @@ public class Action {
     
     private CookieManager cookies;
     private final WebClient client;
-    private final Properties properties = Settings.get();
+    private final Properties properties = PropertiesLoader.get();
     
     private String homepageAfterLoginHtml;
 
