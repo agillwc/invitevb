@@ -30,17 +30,9 @@ public enum SendMode {
     private SendMode(String description) {
         this.description = description;
     }
-    
-    /**
-     * Obtém o {@code Mode} de acordo com a descrição.
-     * @param description descrição do modo.
-     * @return o respectivo modo de acordo com a descrição (ignorando <i>case</i>).
-     */
-    public SendMode byDescription(String description){
-        SendMode selected = null;
-        for(SendMode mode : SendMode.values())
-            if(mode.description.equalsIgnoreCase(description))
-                selected = mode;
-        return selected;
+
+    @Override
+    public String toString() {
+        return this.description;
     }
 }
