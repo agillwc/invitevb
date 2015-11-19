@@ -4,8 +4,6 @@ import java.awt.EventQueue;
 
 public class Bootstrap {
     public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            new ApplicationHandler(new InviteVBWindow());
-        });   
+        new ApplicationHandler(new InviteVBWindow());
     }
 }

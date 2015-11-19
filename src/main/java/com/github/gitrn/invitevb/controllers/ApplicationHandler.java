@@ -101,8 +101,7 @@ public class ApplicationHandler implements ActionListener, Runnable {
         actions.login(settings);
         window.setMessage("Login efetuado, buscando usuários online...");
         
-        
-        members = new Scrap().getOnlineMembers(actions.getHtmlFrom(settings.getHomePage()));
+        members = new Scrap().getOnlineMembers(actions.getHtmlFrom(settings.getHomePage()), settings);
         if(members.isEmpty()){
             JOptionPane.showMessageDialog(window, "Lista de usuários vazia ou não foi possível se conectar ao fórum no momento.", "", JOptionPane.WARNING_MESSAGE);
             System.exit(0);

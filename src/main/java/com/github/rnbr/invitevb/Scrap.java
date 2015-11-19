@@ -1,6 +1,7 @@
 package com.github.rnbr.invitevb;
 
 import com.github.gitrn.invitevb.models.Member;
+import com.github.gitrn.invitevb.models.Settings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Scrap {
                 url;
     }
     
-    public synchronized List<Member> getOnlineMembers(String html){
+    public synchronized List<Member> getOnlineMembers(String html, Settings settings){
         
         List<Member> members = new ArrayList<>();
         
@@ -43,7 +44,7 @@ public class Scrap {
                         String username = onlineMember.text();
                         String profileUrl = onlineMember.attr("href");
                         
-                        profileUrl = resolveUrl(profileUrl, getProperty("resource.target"));
+                        profileUrl = resolveUrl(profileUrl, settings.getHomePage());
                         
                         members.add(new Member(username, profileUrl));
                     }
