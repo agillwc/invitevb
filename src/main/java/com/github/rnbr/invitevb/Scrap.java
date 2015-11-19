@@ -1,8 +1,11 @@
 package com.github.rnbr.invitevb;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.github.gitrn.invitevb.models.Member;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -13,7 +16,7 @@ public class Scrap {
     private final Properties properties;
 
     public Scrap() {
-        this.properties = Settings.get();
+        this.properties = PropertiesLoader.get();
     }
     
     private String getProperty(String id){
@@ -26,14 +29,12 @@ public class Scrap {
                 url;
     }
     
-    public synchronized HashMap<String, String> getOnlineMembers(String html){
+    public synchronized List<Member> getOnlineMembers(String html){
         
-        HashMap<String, String> members = new HashMap<>();
+        List<Member> members = new ArrayList<>();
         
         try {
-            Document document = html != null ?
-                                Jsoup.parse(html) :
-                                Jsoup.connect(getProperty("resource.target")).timeout(10000).userAgent("Mozilla").get();
+            Document document = Jsoup.parse(html);
 
             if(document.hasText()){
                 Elements onlineMembers = document.select(getProperty("onlineusers.query"));
@@ -43,7 +44,8 @@ public class Scrap {
                         String profileUrl = onlineMember.attr("href");
                         
                         profileUrl = resolveUrl(profileUrl, getProperty("resource.target"));
-                        members.put(username, profileUrl);
+                        
+                        members.add(new Member(username, profileUrl));
                     }
             }
         } catch(Exception err){}     

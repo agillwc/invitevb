@@ -3,7 +3,9 @@ package com.github.gitrn.invitevb.views;
 import com.github.gitrn.invitevb.modes.SendMode;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
+import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -81,6 +83,17 @@ public class InviteVBWindow extends javax.swing.JFrame {
     public JTextField getFdInterval() {
         return fdInterval;
     }
+
+    /**
+     * @return a barra de progresso.
+     */
+    public JProgressBar getPbProgress() {
+        return pbProgress;
+    }
+    
+    public void setMessage(String content){
+        lbProgress.setText("<html>" + content + "</html>");
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -106,7 +119,7 @@ public class InviteVBWindow extends javax.swing.JFrame {
         fdInterval = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("InviteVB");
+        setTitle("InviteVB - build 0.1.1");
         setResizable(false);
 
         rootPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -150,10 +163,10 @@ public class InviteVBWindow extends javax.swing.JFrame {
 
         pbProgress.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        lbProgress.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbProgress.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         lbProgress.setForeground(new java.awt.Color(102, 102, 102));
         lbProgress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbProgress.setText("Progresso");
+        lbProgress.setText("<html>Bugs, dúvidas e ajuda, só no Github. Crie um issue em: <b>https://github.com/4ucheats/invitevb/issues</b></html>");
 
         spMessage.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)), javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(255, 255, 255))));
 
@@ -191,7 +204,7 @@ public class InviteVBWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pbProgress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbProgress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbProgress)
                     .addComponent(spMessage)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rootPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -255,8 +268,8 @@ public class InviteVBWindow extends javax.swing.JFrame {
                 .addComponent(spMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btAction)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(lbProgress)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(lbProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pbProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())

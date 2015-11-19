@@ -2,6 +2,7 @@ package com.github.rnbr.invitevb;
 
 import com.gargoylesoftware.htmlunit.*;
 import com.gargoylesoftware.htmlunit.html.*;
+import com.github.gitrn.invitevb.models.Settings;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -11,8 +12,6 @@ public class Action {
     private CookieManager cookies;
     private final WebClient client;
     private final Properties properties = PropertiesLoader.get();
-    
-    private String homepageAfterLoginHtml;
 
     public Action() {
         this.client = new WebClient(BrowserVersion.CHROME);
@@ -25,10 +24,10 @@ public class Action {
         this.client.getOptions().setCssEnabled(false);
     }
     
-    public synchronized void login(){
+    public synchronized void login(Settings settings){
         try {
-            String loginUrl = properties.getProperty("resource.target");
-            HtmlPage page = client.getPage(loginUrl);
+            HtmlPage page = client.getPage(settings.getHomePage());
+            
             if(page != null){
                 HtmlForm loginForm = page.getElementById(properties.getProperty("element.form"), true);
                 if(loginForm != null){
@@ -36,8 +35,8 @@ public class Action {
                     HtmlPasswordInput passwordInput = loginForm.getInputByName(properties.getProperty("element.password"));
                     HtmlCheckBoxInput rememberInput = loginForm.getInputByName(properties.getProperty("element.remember"));
                     
-                    userameInput.setValueAttribute(properties.getProperty("login.username"));
-                    passwordInput.setValueAttribute(properties.getProperty("login.password"));
+                    userameInput.setValueAttribute(settings.getUser().getUsername());
+                    passwordInput.setValueAttribute(settings.getUser().getPassword());
                     rememberInput.setChecked(true);
                     
                     cookies = new CookieManager();
@@ -49,21 +48,23 @@ public class Action {
                     submitButton.setAttribute("type", "submit");
                     loginForm.appendChild(submitButton);
                     
-                    submitButton.click();         
+                    submitButton.click();
                 }
             }
         } catch(IOException | FailingHttpStatusCodeException | ElementNotFoundException err){}
     }
     
-    public String getHtmlFrom(String url){
+    public synchronized String getHtmlFrom(String url){
         String html = "";
         try {
             html = client.getPage(url).getWebResponse().getContentAsString();
-        } catch(IOException | FailingHttpStatusCodeException err){}
+        } catch(IOException | FailingHttpStatusCodeException err){
+            System.out.println("err::" + err.getMessage());
+        }
         return html;
     }
     
-    public boolean sendMessageTo(String profileUrl, String... args){
+    public synchronized boolean sendMessageTo(String profileUrl, String message){
         try {
             
             HtmlPage page = client.getPage(profileUrl);
@@ -75,8 +76,7 @@ public class Action {
                     HtmlTextArea messageInput = messageForm.getTextAreaByName(properties.getProperty("message.textarea"));
                     if(messageInput != null){
                         
-                        String hello = properties.getProperty("message.greetings") + " " + (args.length > 0 ? args[0] : "") + "! ";
-                        messageInput.setText(hello + properties.getProperty("message.content"));
+                        messageInput.setText(message);
                         HtmlSubmitInput sendButton = messageForm.getInputByName(properties.getProperty("message.sendbutton"));
                         HtmlPage afterSend = sendButton.click();
                         if(afterSend != null)
@@ -84,7 +84,9 @@ public class Action {
                     }
                 }
             }
-        } catch(IOException | FailingHttpStatusCodeException | ElementNotFoundException err){}        
+        } catch(IOException | FailingHttpStatusCodeException | ElementNotFoundException err){
+            return false;
+        }
         return false;
     }
 }

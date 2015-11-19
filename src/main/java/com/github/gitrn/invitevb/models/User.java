@@ -2,23 +2,16 @@ package com.github.gitrn.invitevb.models;
 
 public class User {
     
-    /**
-     * Nome de usuário.
-     */
     private final String username;
-    
-    /**
-     * Link do perfil.
-     */
-    private final String profileUrl;
+    private final String password;
 
-    public User(String username, String profileUrl) {
+    public User(String username, String password) {
         this.username = username;
-        this.profileUrl = profileUrl;
+        this.password = password;
     }
 
-    public String getProfileUrl() {
-        return profileUrl;
+    public String getPassword() {
+        return password;
     }
 
     public String getUsername() {
