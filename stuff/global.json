@@ -4,6 +4,6 @@
     ],
     
     "banned": [
-        {"user": "cactus"}
+        {"name": "cactus"}
     ]
 }
