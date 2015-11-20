@@ -1,4 +1,4 @@
-package com.github.gitrn.invitevb.models;
+package com.github.rnbr.invitevb.models;
 
 public class Member {
     

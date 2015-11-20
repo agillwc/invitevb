@@ -1,5 +1,5 @@
-import com.github.gitrn.invitevb.controllers.ApplicationHandler;
-import com.github.gitrn.invitevb.views.InviteVBWindow;
+import com.github.rnbr.invitevb.controllers.ApplicationHandler;
+import com.github.rnbr.invitevb.views.InviteVBWindow;
 import java.awt.EventQueue;
 
 public class Bootstrap {

@@ -1,7 +1,7 @@
 package com.github.rnbr.invitevb;
 
-import com.github.gitrn.invitevb.models.Member;
-import com.github.gitrn.invitevb.models.Settings;
+import com.github.rnbr.invitevb.models.Member;
+import com.github.rnbr.invitevb.models.Settings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class Scrap {
     private final Properties properties;
 
     public Scrap() {
-        this.properties = PropertiesLoader.get();
+        this.properties = Attributes.get();
     }
     
     private String getProperty(String id){

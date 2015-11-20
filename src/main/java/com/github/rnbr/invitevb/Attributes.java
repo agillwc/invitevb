@@ -3,10 +3,18 @@ package com.github.rnbr.invitevb;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class PropertiesLoader {
+/**
+ * Faz a leitura das propriedades do arquivo {@code /resouces/invite.properties}
+ * colocando-o em memória e acessível estaticamente por qualquer outro objeto.
+ */
+public class Attributes {
     
+    /**
+     * Objeto que guarda as propriedades.
+     */
     private static final Properties SETTINGS;
-
+    
+    
     static {
         SETTINGS = load();
     }

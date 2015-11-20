@@ -1,4 +1,4 @@
-package com.github.gitrn.invitevb.modes;
+package com.github.rnbr.invitevb.modes;
 
 /**
  * Tipo de ação.

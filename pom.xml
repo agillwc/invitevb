@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     
     <name>Invite VB</name>
-    <version>0.1.1-FINAL</version>
+    <version>0.1.1</version>
     <description>
         Aplicação para plataforma VBulletin.
         Faz o envio de mensagens em massa para todos os usuários online.

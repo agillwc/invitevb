@@ -2,7 +2,7 @@ package com.github.rnbr.invitevb;
 
 import com.gargoylesoftware.htmlunit.*;
 import com.gargoylesoftware.htmlunit.html.*;
-import com.github.gitrn.invitevb.models.Settings;
+import com.github.rnbr.invitevb.models.Settings;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -11,7 +11,7 @@ public class Action {
     
     private CookieManager cookies;
     private final WebClient client;
-    private final Properties properties = PropertiesLoader.get();
+    private final Properties properties = Attributes.get();
 
     public Action() {
         this.client = new WebClient(BrowserVersion.CHROME);

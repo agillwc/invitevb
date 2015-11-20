@@ -1,6 +1,6 @@
-package com.github.gitrn.invitevb.models;
+package com.github.rnbr.invitevb.models;
 
-import com.github.gitrn.invitevb.models.Member;
+import com.github.rnbr.invitevb.models.Member;
 import java.util.Comparator;
 
 /**

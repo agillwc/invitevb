@@ -1,11 +1,11 @@
-package com.github.gitrn.invitevb.controllers;
+package com.github.rnbr.invitevb.controllers;
 
-import com.github.gitrn.invitevb.models.Member;
-import com.github.gitrn.invitevb.models.MemberComparator;
-import com.github.gitrn.invitevb.models.Settings;
-import com.github.gitrn.invitevb.models.User;
-import com.github.gitrn.invitevb.modes.SendMode;
-import com.github.gitrn.invitevb.views.InviteVBWindow;
+import com.github.rnbr.invitevb.models.Member;
+import com.github.rnbr.invitevb.models.MemberComparator;
+import com.github.rnbr.invitevb.models.Settings;
+import com.github.rnbr.invitevb.models.User;
+import com.github.rnbr.invitevb.modes.SendMode;
+import com.github.rnbr.invitevb.views.InviteVBWindow;
 import com.github.rnbr.invitevb.Action;
 import com.github.rnbr.invitevb.Scrap;
 import com.github.rnbr.invitevb.Utils;
@@ -72,7 +72,7 @@ public class ApplicationHandler implements ActionListener, Runnable {
         String message = "";
         
         Permissions permissions = new Permissions();
-        message += permissions.isAllowed("banned", settings.getUser().getUsername()) == Permissions.Permission.FORBIDDEN ?
+        message += permissions.isAllowed("banned", settings.getUser().getUsername(), settings.getHomePage()) == Permissions.Permission.FORBIDDEN?
                    "Você não tem permissão para usar essa aplicação.\n" :
                    "";
         
@@ -115,6 +115,7 @@ public class ApplicationHandler implements ActionListener, Runnable {
     @Override
     public void run() {
         
+        window.setMessage("Verificando/validando suas configurações...");
         settings = getSettings();
         if(!hasPermission())
             System.exit(0);

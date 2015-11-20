@@ -6,14 +6,17 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Utils {
+    
+    public static boolean isNullOrEmpty(String t){
+        return t == null || t.trim().isEmpty();
+    }
+    
     public static boolean isNullOrEmpty(JTextField t){
-        String text = t.getText();
-        return text == null || text.trim().isEmpty();
+        return isNullOrEmpty(t.getText());
     }
     
     public static boolean isNullOrEmpty(JTextArea t){
-        String text = t.getText();
-        return text == null || text.trim().isEmpty();
+        return isNullOrEmpty(t.getText());
     }
     
     public static boolean hasValidInteger(JTextField t){

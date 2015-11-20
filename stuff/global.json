@@ -1,10 +1,8 @@
-{
-    "friendly": [
-        {"name":"playcheat"}
-    ],
-    
+{   
     "banned": [
         {"name": "Volcon"},
-        {"name": "Eduardo~'"}
+        {"name": "'Darkswamp"},
+        {"name": "luis3232"},
+        {"name": "srDIEGO2014"}
     ]
 }

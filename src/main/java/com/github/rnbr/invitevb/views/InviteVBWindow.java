@@ -1,6 +1,6 @@
-package com.github.gitrn.invitevb.views;
+package com.github.rnbr.invitevb.views;
 
-import com.github.gitrn.invitevb.modes.SendMode;
+import com.github.rnbr.invitevb.modes.SendMode;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -117,6 +117,7 @@ public class InviteVBWindow extends javax.swing.JFrame {
         lbInterval = new javax.swing.JLabel();
         lbSeconds = new javax.swing.JLabel();
         fdInterval = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("InviteVB - build 0.1.1");
@@ -136,12 +137,15 @@ public class InviteVBWindow extends javax.swing.JFrame {
 
         fdUsername.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         fdUsername.setToolTipText("Nome de usuário no fórum");
+        fdUsername.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         fdPassword.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         fdPassword.setToolTipText("Senha de acesso ao fórum");
+        fdPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         fdHomepage.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         fdHomepage.setToolTipText("Index do fórum");
+        fdHomepage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         lbHomepage.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbHomepage.setForeground(new java.awt.Color(102, 102, 102));
@@ -150,6 +154,7 @@ public class InviteVBWindow extends javax.swing.JFrame {
 
         cbMode.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbMode.setModel(new javax.swing.DefaultComboBoxModel<>(SendMode.values()));
+        cbMode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         lbMode.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbMode.setForeground(new java.awt.Color(102, 102, 102));
@@ -161,14 +166,18 @@ public class InviteVBWindow extends javax.swing.JFrame {
         btAction.setActionCommand("run");
         btAction.setFocusable(false);
 
+        pbProgress.setBackground(new java.awt.Color(255, 255, 255));
         pbProgress.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        pbProgress.setForeground(new java.awt.Color(0, 204, 153));
+        pbProgress.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        pbProgress.setStringPainted(true);
 
         lbProgress.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        lbProgress.setForeground(new java.awt.Color(102, 102, 102));
+        lbProgress.setForeground(new java.awt.Color(0, 204, 153));
         lbProgress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbProgress.setText("<html>Bugs, dúvidas e ajuda, só no Github. Crie um issue em: <b>https://github.com/4ucheats/invitevb/issues</b></html>");
 
-        spMessage.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)), javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(255, 255, 255))));
+        spMessage.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2), javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(255, 255, 255))));
 
         fdMessage.setColumns(20);
         fdMessage.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -195,6 +204,9 @@ public class InviteVBWindow extends javax.swing.JFrame {
 
         fdInterval.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         fdInterval.setToolTipText("Intervalo entre as mensagens");
+        fdInterval.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);
@@ -209,9 +221,6 @@ public class InviteVBWindow extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rootPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btAction, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(rootPanelLayout.createSequentialGroup()
-                        .addComponent(lbMessage)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(rootPanelLayout.createSequentialGroup()
                         .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbUsername)
@@ -236,7 +245,11 @@ public class InviteVBWindow extends javax.swing.JFrame {
                                 .addGap(35, 35, 35)))
                         .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(fdHomepage)
-                            .addComponent(cbMode, 0, 160, Short.MAX_VALUE))))
+                            .addComponent(cbMode, 0, 160, Short.MAX_VALUE)))
+                    .addGroup(rootPanelLayout.createSequentialGroup()
+                        .addComponent(lbMessage)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jSeparator1))
                 .addContainerGap())
         );
         rootPanelLayout.setVerticalGroup(
@@ -268,7 +281,9 @@ public class InviteVBWindow extends javax.swing.JFrame {
                 .addComponent(spMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btAction)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pbProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,6 +312,7 @@ public class InviteVBWindow extends javax.swing.JFrame {
     private javax.swing.JTextArea fdMessage;
     private javax.swing.JPasswordField fdPassword;
     private javax.swing.JTextField fdUsername;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbHomepage;
     private javax.swing.JLabel lbInterval;
     private javax.swing.JLabel lbMessage;
