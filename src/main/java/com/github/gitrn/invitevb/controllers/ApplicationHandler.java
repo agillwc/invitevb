@@ -26,6 +26,8 @@ public class ApplicationHandler implements ActionListener, Runnable {
     private final InviteVBWindow window;
     private final Action actions = new Action();
     
+    private Settings settings;
+    
     private List<Member> members;
     private int beginIndex, endIndex, currentIndex;
     private int messagesTotal;
@@ -65,6 +67,22 @@ public class ApplicationHandler implements ActionListener, Runnable {
         return validate;
     }
     
+    private boolean hasPermission(){
+        boolean permission = true;
+        String message = "";
+        
+        Permissions permissions = new Permissions();
+        message += permissions.isAllowed("banned", settings.getUser().getUsername()) == Permissions.Permission.FORBIDDEN ?
+                   "Você não tem permissão para usar essa aplicação.\n" :
+                   "";
+        
+        if(!message.trim().isEmpty()){
+            JOptionPane.showMessageDialog(window, message, "Inicialização Interrompida", JOptionPane.WARNING_MESSAGE);
+            permission = false;
+        }
+        return permission;
+    }
+    
     private synchronized Settings getSettings(){
         User credentials = new User(window.getFdUsername().getText(), new String(window.getFdPassword().getPassword()));
         return new Settings(
@@ -82,6 +100,7 @@ public class ApplicationHandler implements ActionListener, Runnable {
             case "run":
                 if(!validate())
                     return;
+                  
                 new Thread(this).start();
                 break;
                 
@@ -92,10 +111,13 @@ public class ApplicationHandler implements ActionListener, Runnable {
         }
         window.switchButtonState();
     }
-
+    
     @Override
     public void run() {
-        Settings settings = getSettings();
+        
+        settings = getSettings();
+        if(!hasPermission())
+            System.exit(0);
    
         window.setMessage("Acessando o fórum...");
         actions.login(settings);
