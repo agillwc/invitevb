@@ -3,7 +3,7 @@
 Aplicação para uso em plataforma VBulletin. <br>
 Invite VB faz o envio de mensagens em massa pré-configuradas à todos os usuários online no fórum, no momento em que a aplicação é executada.
 
-#[Download](https://www.mediafire.com/?ayft40rkx0635k7).
+#[Download](http://cheats.4yousf.com/topic/44-invitevb/).
 
 ----
 
