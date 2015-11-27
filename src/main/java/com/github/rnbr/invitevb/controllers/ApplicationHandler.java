@@ -7,6 +7,7 @@ import com.github.rnbr.invitevb.models.User;
 import com.github.rnbr.invitevb.modes.SendMode;
 import com.github.rnbr.invitevb.views.InviteVBWindow;
 import com.github.rnbr.invitevb.Action;
+import com.github.rnbr.invitevb.Attributes;
 import com.github.rnbr.invitevb.Scrap;
 import com.github.rnbr.invitevb.Utils;
 import java.awt.event.ActionEvent;
@@ -120,6 +121,7 @@ public class ApplicationHandler implements ActionListener, Runnable {
         if(!hasPermission())
             System.exit(0);
    
+        
         window.setMessage("Acessando o fórum...");
         actions.login(settings);
         window.setMessage("Login efetuado, buscando usuários online...");
@@ -129,6 +131,8 @@ public class ApplicationHandler implements ActionListener, Runnable {
             JOptionPane.showMessageDialog(window, "Lista de usuários vazia ou não foi possível se conectar ao fórum no momento.", "", JOptionPane.WARNING_MESSAGE);
             System.exit(0);
         }
+        
+        members = new Scrap().getModerators(actions.getHtmlFrom(settings.getHomePage() + Attributes.get().getProperty("resource.staff")), settings, members);
         
         Collections.sort(members, new MemberComparator());
         

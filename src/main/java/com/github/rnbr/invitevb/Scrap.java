@@ -4,8 +4,10 @@ import com.github.rnbr.invitevb.models.Member;
 import com.github.rnbr.invitevb.models.Settings;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -51,6 +53,47 @@ public class Scrap {
             }
         } catch(Exception err){}     
         return members;
+    }
+    
+    public synchronized List<Member> getModerators(String html, Settings settings, List<Member> fullList){
+        List<Member> staff = new ArrayList<>();
+        try {
+            Document document = Jsoup.parse(html);
+            if(document.hasText()){
+                Elements staffers = document.select(getProperty("resouce.staffgroup1.query"));
+                if(!staffers.isEmpty()){
+                    for(Element staffer : staffers){
+                        String username = staffer.text();
+                        String profileUrl = staffer.attr("href");
+                        profileUrl = resolveUrl(profileUrl, settings.getHomePage());
+                        
+                        staff.add(new Member(username, profileUrl));
+                    }
+                }
+                
+                Elements moreStaffers = document.select(getProperty("resouce.staffgroup1.query"));
+                if(!moreStaffers.isEmpty()){
+                    for(Element staffer : moreStaffers){
+                        String username = staffer.text();
+                        String profileUrl = staffer.attr("href");
+                        profileUrl = resolveUrl(profileUrl, settings.getHomePage());
+                        
+                        staff.add(new Member(username, profileUrl));
+                    }
+                }
+            }
+            
+            
+            if(!staff.isEmpty()){
+                // removendo duplicatas
+                Set<Member> setMembers = new LinkedHashSet<>();
+                setMembers.addAll(fullList);
+                setMembers.removeAll(staff);
+                staff.clear();
+                staff.addAll(setMembers);
+            }
+        } catch(Exception err){}
+        return staff;
     }
     
 }
