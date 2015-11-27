@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 public class ApplicationHandler implements ActionListener, Runnable {
@@ -72,10 +74,17 @@ public class ApplicationHandler implements ActionListener, Runnable {
         boolean permission = true;
         String message = "";
         
-        Permissions permissions = new Permissions();
-        message += permissions.isAllowed("banned", settings.getUser().getUsername(), settings.getHomePage()) == Permissions.Permission.FORBIDDEN?
-                   "Você não tem permissão para usar essa aplicação.\n" :
-                   "";
+        Pattern pattern = Pattern.compile("^.+@.+\\..+$");
+        Matcher matcher = pattern.matcher(settings.getUser().getUsername());
+        if(matcher.matches())
+            message += "Use seu nome de usuário, não email.\n";
+        
+        if(message.length() == 0){
+            Permissions permissions = new Permissions();
+            message += permissions.isAllowed("banned", settings.getUser().getUsername(), settings.getHomePage()) == Permissions.Permission.FORBIDDEN?
+                       "Você não tem permissão para usar essa aplicação." :
+                       "";
+        }
         
         if(!message.trim().isEmpty()){
             JOptionPane.showMessageDialog(window, message, "Inicialização Interrompida", JOptionPane.WARNING_MESSAGE);
@@ -132,7 +141,12 @@ public class ApplicationHandler implements ActionListener, Runnable {
             System.exit(0);
         }
         
-        members = new Scrap().getModerators(actions.getHtmlFrom(settings.getHomePage() + Attributes.get().getProperty("resource.staff")), settings, members);
+        if(!window.getCbStaff().isSelected())
+            members = new Scrap().getModerators(
+                actions.getHtmlFrom(settings.getHomePage() + Attributes.get().getProperty("resource.staff")),
+                settings,
+                members
+            );
         
         Collections.sort(members, new MemberComparator());
         
@@ -151,6 +165,12 @@ public class ApplicationHandler implements ActionListener, Runnable {
             case MIDDLE_TO_END:
                 beginIndex = members.size() / 2;
                 endIndex = members.size();
+                break;
+                
+            case SHUFFLE:
+                beginIndex = 0;
+                endIndex = members.size();
+                Collections.shuffle(members);
                 break;
         }
         

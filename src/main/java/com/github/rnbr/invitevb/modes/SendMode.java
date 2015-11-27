@@ -5,6 +5,7 @@ package com.github.rnbr.invitevb.modes;
  */
 public enum SendMode {
     
+    SHUFFLE("Embaralhado"),
     
     /**
      * Percorre toda a lista de usuários.

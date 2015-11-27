@@ -4,6 +4,7 @@ import com.github.rnbr.invitevb.models.Member;
 import com.github.rnbr.invitevb.models.Settings;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Properties;
@@ -63,7 +64,7 @@ public class Scrap {
                 Elements staffers = document.select(getProperty("resouce.staffgroup1.query"));
                 if(!staffers.isEmpty()){
                     for(Element staffer : staffers){
-                        String username = staffer.text();
+                        String username = staffer.text().trim();
                         String profileUrl = staffer.attr("href");
                         profileUrl = resolveUrl(profileUrl, settings.getHomePage());
                         
@@ -74,7 +75,7 @@ public class Scrap {
                 Elements moreStaffers = document.select(getProperty("resouce.staffgroup1.query"));
                 if(!moreStaffers.isEmpty()){
                     for(Element staffer : moreStaffers){
-                        String username = staffer.text();
+                        String username = staffer.text().trim();
                         String profileUrl = staffer.attr("href");
                         profileUrl = resolveUrl(profileUrl, settings.getHomePage());
                         
@@ -86,12 +87,17 @@ public class Scrap {
             
             if(!staff.isEmpty()){
                 // removendo duplicatas
-                Set<Member> setMembers = new LinkedHashSet<>();
-                setMembers.addAll(fullList);
-                setMembers.removeAll(staff);
+                
+                Set<Member> setStaffers = new LinkedHashSet<>();
+                setStaffers.addAll(staff);
+                
                 staff.clear();
-                staff.addAll(setMembers);
+                staff.addAll(fullList);
+                staff.removeAll(setStaffers);
             }
+            
+           // for(Member m : staff)
+           //     System.out.println(m.getUsername());
         } catch(Exception err){}
         return staff;
     }

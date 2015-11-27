@@ -2,6 +2,7 @@ package com.github.rnbr.invitevb.views;
 
 import com.github.rnbr.invitevb.modes.SendMode;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -90,6 +91,10 @@ public class InviteVBWindow extends javax.swing.JFrame {
     public JProgressBar getPbProgress() {
         return pbProgress;
     }
+
+    public JCheckBox getCbStaff() {
+        return cbStaff;
+    }
     
     public void setMessage(String content){
         lbProgress.setText("<html>" + content + "</html>");
@@ -118,9 +123,10 @@ public class InviteVBWindow extends javax.swing.JFrame {
         lbSeconds = new javax.swing.JLabel();
         fdInterval = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
+        cbStaff = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("InviteVB - build 0.1.1");
+        setTitle("InviteVB - build 0.2.0");
         setResizable(false);
 
         rootPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -168,12 +174,12 @@ public class InviteVBWindow extends javax.swing.JFrame {
 
         pbProgress.setBackground(new java.awt.Color(255, 255, 255));
         pbProgress.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        pbProgress.setForeground(new java.awt.Color(0, 204, 153));
+        pbProgress.setForeground(new java.awt.Color(255, 102, 102));
         pbProgress.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
         pbProgress.setStringPainted(true);
 
         lbProgress.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        lbProgress.setForeground(new java.awt.Color(0, 204, 153));
+        lbProgress.setForeground(new java.awt.Color(255, 102, 102));
         lbProgress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbProgress.setText("<html>Bugs, dúvidas e ajuda, só no Github. Crie um issue em: <b>https://github.com/4ucheats/invitevb/issues</b></html>");
 
@@ -208,6 +214,10 @@ public class InviteVBWindow extends javax.swing.JFrame {
 
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
 
+        cbStaff.setBackground(new java.awt.Color(255, 255, 255));
+        cbStaff.setText("Enviar para Moderadores");
+        cbStaff.setActionCommand("staff");
+
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);
         rootPanelLayout.setHorizontalGroup(
@@ -236,16 +246,19 @@ public class InviteVBWindow extends javax.swing.JFrame {
                                 .addComponent(fdPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                                 .addComponent(fdUsername)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                        .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rootPanelLayout.createSequentialGroup()
-                                .addComponent(lbMode, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(rootPanelLayout.createSequentialGroup()
-                                .addComponent(lbHomepage)
-                                .addGap(35, 35, 35)))
                         .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(fdHomepage)
-                            .addComponent(cbMode, 0, 160, Short.MAX_VALUE)))
+                            .addGroup(rootPanelLayout.createSequentialGroup()
+                                .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rootPanelLayout.createSequentialGroup()
+                                        .addComponent(lbMode, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                    .addGroup(rootPanelLayout.createSequentialGroup()
+                                        .addComponent(lbHomepage)
+                                        .addGap(35, 35, 35)))
+                                .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fdHomepage)
+                                    .addComponent(cbMode, 0, 160, Short.MAX_VALUE)))
+                            .addComponent(cbStaff, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)))
                     .addGroup(rootPanelLayout.createSequentialGroup()
                         .addComponent(lbMessage)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -273,7 +286,8 @@ public class InviteVBWindow extends javax.swing.JFrame {
                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(fdInterval, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbSeconds))
+                        .addComponent(lbSeconds)
+                        .addComponent(cbStaff))
                     .addComponent(lbInterval))
                 .addGap(18, 18, 18)
                 .addComponent(lbMessage)
@@ -281,7 +295,7 @@ public class InviteVBWindow extends javax.swing.JFrame {
                 .addComponent(spMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btAction)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -307,6 +321,7 @@ public class InviteVBWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAction;
     private javax.swing.JComboBox<SendMode> cbMode;
+    private javax.swing.JCheckBox cbStaff;
     private javax.swing.JTextField fdHomepage;
     private javax.swing.JTextField fdInterval;
     private javax.swing.JTextArea fdMessage;
