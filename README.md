@@ -21,4 +21,8 @@ para a primeira metade da lista de usuários online; "Meio ao fim" enviará a me
 - corrigido o problema de enviar mensagens com intervalos curtos,
 - otimização.
 
-![version](https://img.shields.io/badge/v-0.1.1-3498db.svg?style=flat-square) ![4ucheats](https://img.shields.io/badge/4U-cheats-9b59b6.svg?style=flat-square)
+**0.2.0**
+- opção para excluir moderadores da lista,
+- opção para enviar as mensaagens de forma embaralhada.
+
+![version](https://img.shields.io/badge/v-0.2.0-3498db.svg?style=flat-square) ![4ucheats](https://img.shields.io/badge/4U-cheats-9b59b6.svg?style=flat-square)
